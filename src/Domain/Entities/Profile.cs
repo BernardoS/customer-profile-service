@@ -1,5 +1,6 @@
 public class Profile
 {
+    public Guid ProfileId{get; private set;}
     public int Score{get;private set;}
 
     public InvestorType Type {get;private set;}
