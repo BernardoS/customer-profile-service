@@ -9,30 +9,22 @@ public class CustomerService : ICustomerService
 
     public async Task<Customer> CreateCustomer(CreateCustomerInput request)
     {
-        try
+
+        if (request.Name.Length < 3)
         {
-            if(request.Name.Length < 3)
-            {
-                throw new Exception("Nome de usuário muito curto, digite um nome acima de 3 caracteres");
-            }
-
-
-            var customer = new Customer(
-                name: request.Name,
-                email: request.Email,
-                birthdate: request.BirthDate,
-                profession: request.Profession
-            );
-
-            var newCustomer = await _customerRepository.AddAsync(customer);
-
-            return newCustomer;
-
+            throw new Exception("Nome de usuário muito curto, digite um nome acima de 3 caracteres");
         }
-        catch (System.Exception)
-        {
-            throw ;
-        }
+
+        var customer = new Customer(
+            name: request.Name,
+            email: request.Email,
+            birthdate: request.BirthDate,
+            profession: request.Profession
+        );
+
+        var newCustomer = await _customerRepository.AddAsync(customer);
+
+        return newCustomer;
     }
 
     public Customer GetCustomer(Guid id)
