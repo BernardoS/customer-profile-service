@@ -1,4 +1,4 @@
-![alt text](capa-wallet-profile.png)
+![alt text](capa-wallet-profile-1.png)
 
 # Customer Profile Service
 
