@@ -1,6 +1,13 @@
 public class CustomerService : ICustomerService
 {
-    public Customer CreateCustomer(CreateCustomerInput request)
+    public ICustomerRepository _customerRepository;
+
+    public CustomerService(ICustomerRepository customerRepository)
+    {
+        _customerRepository = customerRepository;
+    }
+
+    public async Task<Customer> CreateCustomer(CreateCustomerInput request)
     {
         try
         {
@@ -10,16 +17,17 @@ public class CustomerService : ICustomerService
             }
 
 
-            var createdCustomer = new Customer(
+            var customer = new Customer(
                 name: request.Name,
                 email: request.Email,
                 birthdate: request.BirthDate,
                 profession: request.Profession
             );
-            
-            Console.WriteLine(createdCustomer);
 
-            return createdCustomer;
+            var newCustomer = await _customerRepository.AddAsync(customer);
+
+            return newCustomer;
+
         }
         catch (System.Exception)
         {

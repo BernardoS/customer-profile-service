@@ -7,8 +7,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<ICustomerService,CustomerService>();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
