@@ -12,9 +12,11 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(Guid id)
     {
-        return Ok("API funcionando");
+        var savedCustomer = _customerService.GetCustomer(id);
+
+        return Ok(savedCustomer);
     }
 
     [HttpPost]

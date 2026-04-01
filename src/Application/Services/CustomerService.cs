@@ -27,8 +27,10 @@ public class CustomerService : ICustomerService
         return newCustomer;
     }
 
-    public Customer GetCustomer(Guid id)
+    public async Task<Customer> GetCustomer(Guid id)
     {
-        throw new NotImplementedException();
+        var customer = await _customerRepository.GetByIdAsync(id);
+
+        return customer;
     }
 }
