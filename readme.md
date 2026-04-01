@@ -1,3 +1,5 @@
+![alt text](capa-wallet-profile.png)
+
 # Customer Profile Service
 
 Este é um dos serviços que compõem a aplicação "WalletProfile", a proposta é ser uma aplicação básica para mapear o perfil de investimento de um usuário e assim sugerir uma carteira de investimentos personalizada com base nisso.
