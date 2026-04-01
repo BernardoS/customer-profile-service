@@ -6,6 +6,10 @@ public static class InfrastructureModule
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddScoped<ICustomerService,CustomerService>();
+
+        services.AddScoped<ICustomerRepository,CustomerRepository>();
+
         return services;
     }
 }
