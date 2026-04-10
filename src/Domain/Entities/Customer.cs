@@ -1,16 +1,13 @@
 public class Customer
 {
     public Guid Id {get; private set;}
-
     public string? Name {get; private set;}
-
     public string? Email {get;private set;}
-
     public DateTime BirthDate {get;private set;}
-
     public string? Profession {get;private set;}
-    
     public Profile? Profile {get;private set;}
+    public DateTime CreatedAt {get;private set;}
+    public DateTime UpdatedAt{get; private set;}
 
     public Customer()
     {
