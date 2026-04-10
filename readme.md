@@ -38,6 +38,12 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 - RecommentationService: Voltado para montar as recomendações com base no perfil;
 - MarketDataService: Voltado para capturar os dados do mercado em tempo real para servir como parâmetro para as recomendações.
 
+---
+
+## Modelagem do Banco de Dados
+
+![Banco de Dados](image.png)
+
 ----
 
 Desenvolvido por https://github.com/BernardoS/
