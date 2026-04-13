@@ -42,7 +42,7 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 
 ## Modelagem do Banco de Dados
 
-![Banco de Dados](image.png)
+![Banco de dados](img.png)
 
 ----
 

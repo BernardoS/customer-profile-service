@@ -1,31 +1,35 @@
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("api/[controller]")]
-public class CustomerController : ControllerBase
+namespace CustomerProfileService.Api.Controllers
 {
-    private ICustomerService _customerService;
-
-    public CustomerController(ICustomerService customerService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CustomerController : ControllerBase
     {
-        _customerService = customerService;
-    }
+        private ICustomerService _customerService;
 
-    [HttpGet]
-    public IActionResult Get(Guid id)
-    {
-        var savedCustomer = _customerService.GetCustomer(id);
+        public CustomerController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
-        return Ok(savedCustomer);
-    }
+        [HttpGet]
+        public IActionResult Get(Guid id)
+        {
+            var savedCustomer = _customerService.GetCustomer(id);
 
-    [HttpPost]
-    public IActionResult CreateCustomer(CreateCustomerRequest request)
-    {
-        var customerInput = request.MapToInput();
+            return Ok(savedCustomer);
+        }
 
-        var createdCustomer = _customerService.CreateCustomer(customerInput);
+        [HttpPost]
+        public IActionResult CreateCustomer(CreateCustomerRequest request)
+        {
+            var customerInput = request.MapToInput();
 
-        return Ok(createdCustomer);
+            var createdCustomer = _customerService.CreateCustomer(customerInput);
+
+            return Ok(createdCustomer);
+        }
     }
 }
+

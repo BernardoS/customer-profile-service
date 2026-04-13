@@ -1,36 +1,41 @@
-public class CustomerService : ICustomerService
+using CustomerProfileService.Domain.Interfaces;
+
+namespace CustomerProfileService.Application.Services
 {
-    public ICustomerRepository _customerRepository;
-
-    public CustomerService(ICustomerRepository customerRepository)
+    public class CustomerService : ICustomerService
     {
-        _customerRepository = customerRepository;
-    }
+        public ICustomerRepository _customerRepository;
 
-    public async Task<Customer> CreateCustomer(CreateCustomerInput request)
-    {
-
-        if (request.Name.Length < 3)
+        public CustomerService(ICustomerRepository customerRepository)
         {
-            throw new Exception("Nome de usuário muito curto, digite um nome acima de 3 caracteres");
+            _customerRepository = customerRepository;
         }
 
-        var customer = new Customer(
-            name: request.Name,
-            email: request.Email,
-            birthdate: request.BirthDate,
-            profession: request.Profession
-        );
+        public async Task<Customer> CreateCustomer(CreateCustomerInput request)
+        {
 
-        var newCustomer = await _customerRepository.AddAsync(customer);
+            if (request.Name.Length < 3)
+            {
+                throw new Exception("Nome de usuário muito curto, digite um nome acima de 3 caracteres");
+            }
 
-        return newCustomer;
-    }
+            var customer = new Customer(
+                name: request.Name,
+                email: request.Email,
+                birthdate: request.BirthDate,
+                profession: request.Profession
+            );
 
-    public async Task<Customer> GetCustomer(Guid id)
-    {
-        var customer = await _customerRepository.GetByIdAsync(id);
+            var newCustomer = await _customerRepository.AddAsync(customer);
 
-        return customer;
+            return newCustomer;
+        }
+
+        public async Task<Customer?> GetCustomer(Guid id)
+        {
+            var customer = await _customerRepository.GetByIdAsync(id);
+
+            return customer;
+        }
     }
 }

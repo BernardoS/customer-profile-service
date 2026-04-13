@@ -5,4 +5,5 @@ public class Question
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
     public List<QuestionOption> Options { get; private set; } = new();
+    public Guid FormId { get; private set; }
 }
