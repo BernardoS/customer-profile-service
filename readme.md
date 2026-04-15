@@ -40,9 +40,38 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 
 ---
 
+## Rotas da API
+
+### Customer — `/api/customer`
+
+| Método | Rota | Descrição | Parâmetros |
+|--------|------|-----------|------------|
+| GET | `/api/customer` | Busca um cliente pelo ID | `id` (query param, `Guid`) |
+| POST | `/api/customer` | Cria um novo cliente | Body: `CreateCustomerRequest` |
+
+---
+
+### Form — `/api/form`
+
+| Método | Rota | Descrição | Parâmetros |
+|--------|------|-----------|------------|
+| GET | `/api/form` | Busca um formulário pelo ID | `id` (query param, `Guid`) |
+| POST | `/api/form` | Cria um novo formulário | — |
+| POST | `/api/form/question` | Adiciona uma questão ao formulário | Body: `CreateQuestionRequest` |
+
+---
+
+### Profile — `/api/profile`
+
+| Método | Rota | Descrição | Parâmetros |
+|--------|------|-----------|------------|
+| POST | `/api/profile` | Cria um novo perfil | — |
+
+---
+
 ## Modelagem do Banco de Dados
 
-![Banco de dados](img.png)
+![Banco de dados](image.png)
 
 ----
 
