@@ -11,6 +11,8 @@ public static class InfrastructureModule
         services.AddScoped<ICustomerRepository,CustomerRepository>();
         services.AddScoped<IFormService,FormService>();
         services.AddScoped<IFormRepository,FormRepository>();
+        services.AddScoped<IQuestionRepository,QuestionRepository>();
+        services.AddScoped<IQuestionOptionRepository,QuestionOptionRepository>();
 
         return services;
     }

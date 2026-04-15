@@ -6,4 +6,17 @@ public class QuestionOption
     public Guid QuestionId { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
+
+    public QuestionOption()
+    {
+    }
+
+    public QuestionOption(Guid questionId,string description, int score)
+    {
+        this.Description = description;
+        this.QuestionId = questionId;
+        this.Score = score;
+        this.CreatedAt = DateTime.Now;
+        this.UpdatedAt = DateTime.Now;
+    }
 }

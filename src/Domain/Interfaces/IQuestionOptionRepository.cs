@@ -2,10 +2,10 @@ namespace CustomerProfileService.Domain.Interfaces
 {
     public interface IQuestionOptionRepository
     {
-        Task AddAsync(QuestionOption option);
-        Task UpdateAsync(Question question);
-        Task RemoveAsync(Question question);
-        Task<Question> GetAsync(Guid id);
-        Task<Question> GetByQuestion(Guid questionId);
+        Task<QuestionOption> AddAsync(QuestionOption option);
+        Task UpdateAsync(QuestionOption question);
+        Task RemoveAsync(QuestionOption question);
+        Task<QuestionOption> GetAsync(Guid id);
+        Task<QuestionOption> GetByQuestion(Guid questionId);
     }
 }
