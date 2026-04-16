@@ -4,5 +4,6 @@ namespace CustomerProfileService.Domain.Interfaces
     {
         Task<QuestionForm> AddAsync(QuestionForm form);
         Task<QuestionForm?> GetByIdAsync(Guid id);
+        Task<QuestionForm?> GetLastAsync();
     }
 }

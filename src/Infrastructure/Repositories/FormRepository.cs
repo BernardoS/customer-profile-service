@@ -29,4 +29,16 @@ public class FormRepository : IFormRepository
         
         return questionForm;
     }
+    
+    public async Task<QuestionForm?> GetLastAsync()
+    {
+        var questionForm = await _context
+            .QuestionForm
+            .Include(q => q.Questions)
+            .ThenInclude(q => q.Options)
+            .OrderByDescending(f => f.CreatedAt)
+            .FirstOrDefaultAsync();
+        
+        return questionForm;
+    }
 }

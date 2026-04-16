@@ -34,6 +34,13 @@ namespace CustomerProfileService.Application.Services
 
             return form;
         }
+        
+        public async Task<QuestionForm?> GetLastForm()
+        {
+            var form = await _formRepository.GetLastAsync();
+
+            return form;
+        }
 
         public async Task<Question> AddQuestion(CreateQuestionInput input)
         {

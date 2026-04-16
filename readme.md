@@ -56,6 +56,7 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 | Método | Rota | Descrição | Parâmetros |
 |--------|------|-----------|------------|
 | GET | `/api/form` | Busca um formulário pelo ID | `id` (query param, `Guid`) |
+| GET | `/api/form/last` | Retorna o formulário mais recente | — |
 | POST | `/api/form` | Cria um novo formulário | — |
 | POST | `/api/form/question` | Adiciona uma questão ao formulário | Body: `CreateQuestionRequest` |
 
