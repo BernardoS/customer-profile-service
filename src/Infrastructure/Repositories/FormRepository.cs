@@ -30,13 +30,13 @@ public class FormRepository : IFormRepository
         return questionForm;
     }
     
-    public async Task<QuestionForm?> GetLastAsync()
+    public async Task<QuestionForm?> GetMostRecentAsync()
     {
         var questionForm = await _context
             .QuestionForm
             .Include(q => q.Questions)
             .ThenInclude(q => q.Options)
-            .OrderByDescending(f => f.CreatedAt)
+            .OrderBy(f => f.CreatedAt)
             .FirstOrDefaultAsync();
         
         return questionForm;

@@ -35,9 +35,9 @@ namespace CustomerProfileService.Application.Services
             return form;
         }
         
-        public async Task<QuestionForm?> GetLastForm()
+        public async Task<QuestionForm?> GetMostRecentForm()
         {
-            var form = await _formRepository.GetLastAsync();
+            var form = await _formRepository.GetMostRecentAsync();
 
             return form;
         }
