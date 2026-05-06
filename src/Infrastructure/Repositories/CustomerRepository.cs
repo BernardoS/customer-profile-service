@@ -1,3 +1,5 @@
+using CustomerProfileService.Domain.Interfaces;
+
 public class CustomerRepository : ICustomerRepository
 {
     private readonly AppDbContext _context;

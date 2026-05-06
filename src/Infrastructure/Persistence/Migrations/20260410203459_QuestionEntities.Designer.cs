@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260410203459_QuestionEntities")]
+    partial class QuestionEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.5");
@@ -37,10 +40,15 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
                     b.Property<string>("Profession")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("ProfileId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Customers");
                 });
@@ -71,6 +79,14 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnsweredFormId");
+
+                    b.HasIndex("AnsweredQuestionId");
+
+                    b.HasIndex("AnsweredQuestionOptionId");
+
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("FormAnswers");
                 });
 
@@ -81,9 +97,6 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CustomerId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Score")
@@ -97,8 +110,6 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
 
                     b.HasKey("ProfileId");
 
-                    b.HasIndex("CustomerId");
-
                     b.ToTable("Profiles");
                 });
 
@@ -111,7 +122,7 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("QuestionFormId")
+                    b.Property<Guid?>("QuestionFormId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -174,22 +185,55 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
                     b.ToTable("QuestionOptions");
                 });
 
-            modelBuilder.Entity("Profile", b =>
+            modelBuilder.Entity("Customer", b =>
                 {
-                    b.HasOne("Customer", null)
-                        .WithMany("Profiles")
+                    b.HasOne("Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("FormAnswer", b =>
+                {
+                    b.HasOne("QuestionForm", "AnsweredForm")
+                        .WithMany()
+                        .HasForeignKey("AnsweredFormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Question", "AnsweredQuestion")
+                        .WithMany()
+                        .HasForeignKey("AnsweredQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuestionOption", "AnsweredQuestionOption")
+                        .WithMany()
+                        .HasForeignKey("AnsweredQuestionOptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Customer", "Customer")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AnsweredForm");
+
+                    b.Navigation("AnsweredQuestion");
+
+                    b.Navigation("AnsweredQuestionOption");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Question", b =>
                 {
                     b.HasOne("QuestionForm", null)
                         .WithMany("Questions")
-                        .HasForeignKey("QuestionFormId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("QuestionFormId");
                 });
 
             modelBuilder.Entity("QuestionOption", b =>
@@ -199,11 +243,6 @@ namespace customer_profile_service.src.Infrastructure.Persistence.Migrations
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Customer", b =>
-                {
-                    b.Navigation("Profiles");
                 });
 
             modelBuilder.Entity("Question", b =>
