@@ -8,11 +8,14 @@ public static class InfrastructureModule
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
         services.AddScoped<ICustomerService,CustomerService>();
+        services.AddScoped<ICustomerService,CustomerService>();
         services.AddScoped<ICustomerRepository,CustomerRepository>();
         services.AddScoped<IFormService,FormService>();
         services.AddScoped<IFormRepository,FormRepository>();
         services.AddScoped<IQuestionRepository,QuestionRepository>();
         services.AddScoped<IQuestionOptionRepository,QuestionOptionRepository>();
+        services.AddScoped<IProfileService,ProfileService>();
+        services.AddScoped<IProfileRepository,ProfileRepository>();
 
         return services;
     }

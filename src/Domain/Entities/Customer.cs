@@ -5,9 +5,10 @@ public class Customer
     public string? Email {get;private set;}
     public DateTime BirthDate {get;private set;}
     public string? Profession {get;private set;}
-    public Profile? Profile {get;private set;}
     public DateTime CreatedAt {get;private set;}
     public DateTime UpdatedAt{get; private set;}
+    
+    public List<Profile> Profiles { get; private set; } = new();
 
     public Customer()
     {
@@ -20,11 +21,6 @@ public class Customer
         Email = email;
         BirthDate = birthdate;
         Profession = profession;
-    }
-
-    public void SetProfile(Profile profile)
-    {
-        this.Profile = profile;
     }
 
     public override string ToString()

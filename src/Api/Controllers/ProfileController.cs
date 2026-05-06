@@ -5,14 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 public class ProfileController : ControllerBase
 {
 
-    public ProfileController()
+    
+    private IProfileService _profileService;
+    
+    public ProfileController(IProfileService profileService)
     {
+        _profileService = profileService;
     }
 
 
     [HttpPost]
-    public IActionResult CreateProfile()
+    public IActionResult CreateProfile(CreateProfileRequest request)
     {
-        return Ok();
+        var createProfileInput = request.MapToInput();
+        
+        var profile = _profileService.CreateProfile(createProfileInput);
+        
+        return Ok(profile);
     }
 }

@@ -41,4 +41,10 @@ public class FormRepository : IFormRepository
         
         return questionForm;
     }
+
+    public Task AddFormAnswerAsync(List<FormAnswer> formAnswers)
+    {
+        _context.FormAnswers.AddRange(formAnswers);
+        return _context.SaveChangesAsync();
+    }
 }

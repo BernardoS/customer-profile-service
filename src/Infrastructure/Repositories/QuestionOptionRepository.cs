@@ -27,9 +27,11 @@ public class QuestionOptionRepository : IQuestionOptionRepository
         throw new NotImplementedException();
     }
 
-    public Task<QuestionOption> GetAsync(Guid id)
+    public async Task<QuestionOption?> GetAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var questionOption = await _context.QuestionOptions.FindAsync(id);
+        
+        return questionOption ?? null;
     }
 
     public Task<QuestionOption> GetByQuestion(Guid questionId)

@@ -5,7 +5,7 @@ namespace CustomerProfileService.Domain.Interfaces
         Task<QuestionOption> AddAsync(QuestionOption option);
         Task UpdateAsync(QuestionOption question);
         Task RemoveAsync(QuestionOption question);
-        Task<QuestionOption> GetAsync(Guid id);
+        Task<QuestionOption?> GetAsync(Guid id);
         Task<QuestionOption> GetByQuestion(Guid questionId);
     }
 }

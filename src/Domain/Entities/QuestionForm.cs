@@ -10,4 +10,13 @@ public class QuestionForm{
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
     }
+
+    public int GetMaxScore()
+    {
+      int maxScore = 0;
+
+      maxScore = Questions.Sum(q => q.GetMaxScore());
+      
+      return maxScore;
+    }
 }

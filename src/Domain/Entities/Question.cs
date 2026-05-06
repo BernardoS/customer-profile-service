@@ -19,5 +19,22 @@ public class Question
         this.CreatedAt = DateTime.Now;
         this.UpdatedAt = DateTime.Now;
     }
+
+    public int GetMaxScore()
+    {
+        if (Options.Count == 0)
+        {
+            return 0;
+        }
+        
+        int maxScore = 0;
+        
+        maxScore = Options
+            .Select(o => o.Score)
+            .ToList()
+            .Max();
+        
+        return maxScore;
+    }
     
 }
