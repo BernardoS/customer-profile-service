@@ -18,16 +18,17 @@ Definição do perfil de investidor (Conservador, Moderado, Agressivo)
 Ao criar o cliente, o próprio serviço já calcula o perfil
 Pode usar Strategy Pattern internamente
 
-📌 Evento publicado:
+📌 Eventos publicados:
 
-`CustomerProfileCreated`
+`customer_created_event` — publicado ao criar um novo cliente  
+`profile_created_event` — publicado ao criar o perfil de investidor do cliente
 
 ----
 ## Tecnologias utilizadas
 
 - .NET
-- RabbitMQ (implementações futuras)
-- Entity Framework (implementações futuras)
+- RabbitMQ 
+- Entity Framework
 
 ----
 
