@@ -21,4 +21,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src\Infrastructure\Messaging\Interfaces\" />
+  </ItemGroup>
+
 </Project>

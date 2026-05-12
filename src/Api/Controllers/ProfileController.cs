@@ -15,11 +15,11 @@ public class ProfileController : ControllerBase
 
 
     [HttpPost]
-    public IActionResult CreateProfile(CreateProfileRequest request)
+    public async Task<IActionResult> CreateProfile(CreateProfileRequest request)
     {
         var createProfileInput = request.MapToInput();
         
-        var profile = _profileService.CreateProfile(createProfileInput);
+        var profile = await _profileService.CreateProfile(createProfileInput);
         
         return Ok(profile);
     }
