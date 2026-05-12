@@ -1,18 +1,17 @@
-﻿namespace CustomerProfileService.Application.Events;
+﻿using CustomerProfileService.Domain.Interfaces;
 
-public abstract class Event
+namespace CustomerProfileService.Application.Events;
+
+public class Event : IEvent
 {
-    public Guid EventId { get;  set; }
-    public string EventName { get; set; }
-    public string Description { get; set; }
-    public DateTime Timestamp { get; set; }
+    public Guid EventId { get; private set; } = Guid.NewGuid();
+    public string EventName { get; private set; } = string.Empty;
+    public string Description { get; private set; } = string.Empty;
+    public DateTime Timestamp { get; private set; } = DateTime.Now;
 
-    public Event()
+    public Event(string eventName, string description)
     {
-        EventId = Guid.NewGuid();
-        Timestamp = DateTime.Now;
-        Description = string.Empty;
-        EventName = string.Empty;
+        this.EventName = eventName;
+        this.Description = description;
     }
-    
 }

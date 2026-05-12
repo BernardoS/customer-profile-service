@@ -5,12 +5,13 @@ public class ProfileCreatedEvent:Event
     public Guid CustomerId { get; private set; }
     public Guid ProfileId { get; private set; }
 
-    public ProfileCreatedEvent(Guid customerId, Guid profileId):base()
+    public ProfileCreatedEvent(Guid customerId, Guid profileId):
+        base(
+        eventName:"profile_created_event",
+        description: $"Perfil do usuário {customerId} criado com sucesso!")
     {
-        EventName = "profile_created_event";
         CustomerId = customerId;
         ProfileId = profileId;
-        Description = $"Perfil do usuário {customerId} criado com sucesso!";
     }
     
 }
