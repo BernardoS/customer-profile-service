@@ -22,11 +22,11 @@ namespace CustomerProfileService.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCustomer(CreateCustomerRequest request)
+        public async Task<IActionResult> CreateCustomer(CreateCustomerRequest request)
         {
             var customerInput = request.MapToInput();
 
-            var createdCustomer = _customerService.CreateCustomer(customerInput);
+            var createdCustomer = await _customerService.CreateCustomer(customerInput);
 
             return Ok(createdCustomer);
         }

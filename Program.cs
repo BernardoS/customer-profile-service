@@ -1,3 +1,4 @@
+using CustomerProfileService.Infrastructure.Messaging;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.Configure<RabbitMqSettings>(
+    builder.Configuration.GetSection("RabbitMq"));
 builder.Services.AddControllers();
 
 var app = builder.Build();
