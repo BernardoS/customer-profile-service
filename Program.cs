@@ -14,6 +14,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.Configure<RabbitMqSettings>(
     builder.Configuration.GetSection("RabbitMq"));
 builder.Services.AddControllers();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -24,9 +26,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
+app.UseAuthorization();
 app.UseHttpsRedirection();
-
 app.MapControllers();
 
 app.Run();
