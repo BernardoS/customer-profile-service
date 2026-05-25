@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -15,6 +16,7 @@ public class ProfileController : ControllerBase
 
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateProfile(CreateProfileRequest request)
     {
         var createProfileInput = request.MapToInput();
