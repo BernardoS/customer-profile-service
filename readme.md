@@ -71,6 +71,14 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 
 ---
 
+### Auth — `/api/auth`
+
+| Método | Rota | Descrição | Parâmetros |
+|--------|------|-----------|------------|
+| POST | `/api/auth/login` | Realiza login e retorna token JWT | `customerId` (query param, `Guid`) |
+
+---
+
 ## Modelagem do Banco de Dados
 
 ![Banco de dados](database-diagram.png)
