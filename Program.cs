@@ -1,5 +1,9 @@
+using System.Text;
+using CustomerProfileService.Infrastructure.Auth;
 using CustomerProfileService.Infrastructure.Messaging;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +17,12 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.Configure<RabbitMqSettings>(
     builder.Configuration.GetSection("RabbitMq"));
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("Jwt"));
+
 builder.Services.AddControllers();
-builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+
+builder.Services.AddAuthenticationConfig(builder.Configuration);
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
