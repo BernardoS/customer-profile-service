@@ -10,8 +10,8 @@ Este projeto tem como objetivo exercitar algumas práticas relacionadas ao desen
 
 🔹 Responsável por:
 
-Cadastro de clientes
-Definição do perfil de investidor (Conservador, Moderado, Agressivo)
+- Cadastro de clientes
+- Definição do perfil de investidor (Conservador, Moderado, Agressivo)
 
 🔹 Como funciona:
 
@@ -79,9 +79,9 @@ Este serviço terá integração com outros serviços para compor o "WalletProfi
 
 ---
 
-## Modelagem do Banco de Dados
+## Banco de Dados
 
-![Banco de dados](database-diagram.png)
+![alt text](image.png)
 
 ----
 
